@@ -1,0 +1,39 @@
+2024-12-02T19:43:04.572+01:00  INFO 13686 --- [user-api] [main] com.example.userapi.UserApiApplication   : Starting UserApiApplication using Java 21.0.1 with PID 13686 (/Users/hicham/Documents/Architecture logicielle/ProjetAirFrance/user-api/target/classes started by hicham in /Users/hicham/Documents/Architecture logicielle/ProjetAirFrance/user-api)
+2024-12-02T19:43:04.573+01:00 DEBUG 13686 --- [user-api] [main] com.example.userapi.UserApiApplication   : Running with Spring Boot v3.4.0, Spring v6.2.0
+2024-12-02T19:43:04.574+01:00  INFO 13686 --- [user-api] [main] com.example.userapi.UserApiApplication   : No active profile set, falling back to 1 default profile: "default"
+2024-12-02T19:43:05.241+01:00  INFO 13686 --- [user-api] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-12-02T19:43:05.290+01:00  INFO 13686 --- [user-api] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 40 ms. Found 1 JPA repository interface.
+2024-12-02T19:43:05.911+01:00  INFO 13686 --- [user-api] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-12-02T19:43:05.931+01:00  INFO 13686 --- [user-api] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-12-02T19:43:05.931+01:00  INFO 13686 --- [user-api] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.33]
+2024-12-02T19:43:05.992+01:00  INFO 13686 --- [user-api] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-12-02T19:43:05.992+01:00  INFO 13686 --- [user-api] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1369 ms
+2024-12-02T19:43:06.025+01:00  INFO 13686 --- [user-api] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-12-02T19:43:06.285+01:00  INFO 13686 --- [user-api] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection conn0: url=jdbc:h2:mem:testdb user=SA
+2024-12-02T19:43:06.287+01:00  INFO 13686 --- [user-api] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-12-02T19:43:06.297+01:00  INFO 13686 --- [user-api] [main] o.s.b.a.h2.H2ConsoleAutoConfiguration    : H2 console available at '/h2-console'. Database available at 'jdbc:h2:mem:testdb'
+2024-12-02T19:43:06.407+01:00  INFO 13686 --- [user-api] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-12-02T19:43:06.478+01:00  INFO 13686 --- [user-api] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.2.Final
+2024-12-02T19:43:06.516+01:00  INFO 13686 --- [user-api] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-12-02T19:43:06.802+01:00  INFO 13686 --- [user-api] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-12-02T19:43:06.892+01:00  INFO 13686 --- [user-api] [main] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 2.3.232
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2024-12-02T19:43:07.876+01:00  INFO 13686 --- [user-api] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-12-02T19:43:07.952+01:00  INFO 13686 --- [user-api] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-12-02T19:43:08.253+01:00  WARN 13686 --- [user-api] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-12-02T19:43:08.678+01:00  INFO 13686 --- [user-api] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-12-02T19:43:08.686+01:00  INFO 13686 --- [user-api] [main] com.example.userapi.UserApiApplication   : Started UserApiApplication in 4.522 seconds (process running for 5.215)
+2024-12-02T19:43:24.538+01:00  INFO 13686 --- [user-api] [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-12-02T19:43:24.540+01:00  INFO 13686 --- [user-api] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-12-02T19:43:24.542+01:00  INFO 13686 --- [user-api] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2024-12-02T19:52:49.083+01:00  INFO 13686 --- [user-api] [SpringApplicationShutdownHook] o.s.b.w.e.tomcat.GracefulShutdown        : Commencing graceful shutdown. Waiting for active requests to complete
+2024-12-02T19:52:49.097+01:00  INFO 13686 --- [user-api] [tomcat-shutdown] o.s.b.w.e.tomcat.GracefulShutdown        : Graceful shutdown complete
+2024-12-02T19:52:49.113+01:00  INFO 13686 --- [user-api] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-12-02T19:52:49.122+01:00  INFO 13686 --- [user-api] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-12-02T19:52:49.133+01:00  INFO 13686 --- [user-api] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
