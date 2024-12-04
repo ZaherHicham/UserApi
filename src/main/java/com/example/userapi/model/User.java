@@ -1,10 +1,7 @@
 package com.example.userapi.model;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -22,7 +19,7 @@ public class User {
     @NotBlank(message = "Le nom d'utilisateur est obligatoire")
     private String userName;
 
-    @NotNull(message = "La date de naissance est obligatoire")
+    @Past(message = "La date de naissance doit être antérieure")
     private LocalDate birthDate;
 
     @NotBlank(message = "Le pays de résidence est obligatoire")
