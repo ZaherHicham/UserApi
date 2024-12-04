@@ -9,12 +9,25 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+/**
+ * Classe d'aspect pour enregistrer les appels de service, y compris les arguments,
+ * le résultat et le temps d'exécution des méthodes.
+ * Utilise Spring AOP pour intercepter les appels de méthode.
+ */
 @Aspect
 @Component
 public class LoggingAspect {
 
+    // Logger pour enregistrer les messages de débogage et d'informations
     private static final Logger LOGGER = LoggerFactory.getLogger(LoggingAspect.class);
 
+    /**
+     * Intercepte tous les appels aux méthodes de la classe UserService.
+     *
+     * @param joinPoint Représente le point d'exécution de la méthode interceptée.
+     * @return Le résultat de la méthode interceptée.
+     * @throws Throwable Si une exception est levée dans la méthode interceptée.
+     */
     @Around("execution(* com.example.userapi.service.UserService.*(..))")
     public Object logServiceCalls(ProceedingJoinPoint joinPoint) throws Throwable {
         LOGGER.info("Entrée dans : {}", joinPoint.getSignature());
