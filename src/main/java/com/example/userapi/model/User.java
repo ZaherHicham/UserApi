@@ -50,14 +50,15 @@ public class User {
      * Numéro de téléphone de l'utilisateur.
      * Ce champ est facultatif.
      */
+    @Pattern(regexp = "(^$|\\d{10,15})", message = "Le numéro de téléphone doit être valide")
     private String phoneNumber;
 
     /**
      * Genre de l'utilisateur.
-     * Doit être l'une des valeurs suivantes : homme, femme, autre.
+     * Peut être "homme", "femme" ou "autre".
+     * Ce champ est facultatif.
      */
-    @NotBlank(message = "Le genre est obligatoire")
-    @Pattern(regexp = "^(homme|femme|autre)$", message = "Le genre doit être homme, femme ou autre")
+    @Pattern(regexp = "(^$|^(homme|femme|autre)$)", message = "Le genre doit être homme, femme ou autre")
     private String gender;
 
 

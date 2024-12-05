@@ -21,12 +21,12 @@ public class UserRequestDTO {
     @NotBlank(message = "Le pays de résidence est obligatoire")
     private String countryOfResidence;
 
-    @Pattern(regexp = "\\+\\d{10,15}", message = "Le numéro de téléphone doit être valide")
+    @Pattern(regexp = "(^$|\\d{10,15})", message = "Le numéro de téléphone doit être valide")
     private String phoneNumber;
 
-    @NotBlank(message = "Le genre est obligatoire")
-    @Pattern(regexp = "^(homme|femme|autre)$", message = "Le genre doit être homme, femme ou autre")
+    @Pattern(regexp = "(^$|^(homme|femme|autre)$)", message = "Le genre doit être homme, femme ou autre")
     private String gender;
+
 
     // Getters et setters
 }

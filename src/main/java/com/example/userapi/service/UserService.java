@@ -40,16 +40,19 @@ public class UserService {
         responseDTO.setId(savedUser.getId());
         responseDTO.setUserName(savedUser.getUserName());
         responseDTO.setCountryOfResidence(savedUser.getCountryOfResidence());
+        responseDTO.setBirthDate(savedUser.getBirthDate());
+        responseDTO.setPhoneNumber(savedUser.getPhoneNumber());
+        responseDTO.setGender(savedUser.getGender());
 
         return responseDTO;
     }
 
 
     /**
-     * Récupère un utilisateur par son identifiant.
+     * Récupère les informations d'un utilisateur par son identifiant.
      *
      * @param id L'identifiant unique de l'utilisateur.
-     * @return L'utilisateur trouvé, ou une valeur vide s'il n'existe pas.
+     * @return Les informations de l'utilisateur si trouvé, vide sinon.
      */
     public Optional<UserResponseDTO> getUserById(Long id) {
         return userRepository.findById(id).map(user -> {
@@ -58,6 +61,9 @@ public class UserService {
             responseDTO.setId(user.getId());
             responseDTO.setUserName(user.getUserName());
             responseDTO.setCountryOfResidence(user.getCountryOfResidence());
+            responseDTO.setBirthDate(user.getBirthDate());
+            responseDTO.setPhoneNumber(user.getPhoneNumber());
+            responseDTO.setGender(user.getGender());
             return responseDTO;
         });
     }

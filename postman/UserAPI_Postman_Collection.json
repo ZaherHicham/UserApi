@@ -5,7 +5,7 @@
   },
   "item": [
     {
-      "name": "Register User",
+      "name": "Register User with Phone and Gender",
       "request": {
         "method": "POST",
         "header": [
@@ -17,10 +17,100 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"userName\": \"Jean Dupont\",\n  \"birthDate\": \"1995-05-20\",\n  \"countryOfResidence\": \"France\",\n  \"phoneNumber\": \"0612345678\",\n  \"gender\": \"homme\"\n}"
+          "raw": "{\n  \"userName\": \"Jean Dupont\",\n  \"birthDate\": \"1995-05-20\",\n  \"countryOfResidence\": \"France\",\n  \"phoneNumber\": \"0623456789\",\n  \"gender\": \"homme\"\n}"
         },
         "url": {
-          "raw": "http://localhost:8080/api/users/register",
+          "raw": "http://localhost:8080/api/users",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "users"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Register User without Phone",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"userName\": \"Marie Curie\",\n  \"birthDate\": \"1987-12-01\",\n  \"countryOfResidence\": \"France\",\n  \"phoneNumber\": \"\",\n  \"gender\": \"femme\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/users",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "users"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Register User without Gender",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"userName\": \"Albert Einstein\",\n  \"birthDate\": \"1975-03-14\",\n  \"countryOfResidence\": \"France\",\n  \"phoneNumber\": \"0678901234\",\n  \"gender\": \"\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/users",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "users"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Register User without Phone and Gender",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"userName\": \"Isaac Newton\",\n  \"birthDate\": \"1643-01-04\",\n  \"countryOfResidence\": \"France\",\n  \"phoneNumber\": \"\",\n  \"gender\": \"\"\n}"
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/users",
           "protocol": "http",
           "host": [
             "localhost"
