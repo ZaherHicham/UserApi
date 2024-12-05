@@ -1,5 +1,7 @@
 package com.example.userapi.controller;
 
+import com.example.userapi.dto.UserRequestDTO;
+import com.example.userapi.dto.UserResponseDTO;
 import com.example.userapi.model.User;
 import com.example.userapi.repository.UserRepository;
 import com.example.userapi.service.UserService;
@@ -25,22 +27,23 @@ public class UserController {
     /**
      * Enregistre un nouvel utilisateur dans le système.
      *
-     * @param user Objet utilisateur validé depuis le corps de la requête.
-     * @return Une réponse HTTP indiquant le statut de l'enregistrement.
+     * @param userRequestDTO Les informations de l'utilisateur à enregistrer.
+     * @return Une réponse HTTP contenant les informations de l'utilisateur enregistré si l'enregistrement a réussi,
+     *         sinon un statut 400 avec un message d'erreur.
      */
     @PostMapping
-    private ResponseEntity<?> registerUser(@Valid @RequestBody User user){
+    private ResponseEntity<?> registerUser(@Valid @RequestBody UserRequestDTO userRequestDTO){
 
-        if (!userService.isAdult(user.getBirthDate())) {
+        if (!userService.isAdult(userRequestDTO.getBirthDate())) {
             return ResponseEntity.badRequest().body("L'utilisateur doit être majeur");
         }
 
-        if (!userService.isResidentInFrance(user.getCountryOfResidence())) {
+        if (!userService.isResidentInFrance(userRequestDTO.getCountryOfResidence())) {
             return ResponseEntity.badRequest().body("L'utilisateur doit résider en France");
         }
 
-        User savedUser = userService.saveUser(user);
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
+        UserResponseDTO responseDTO = userService.saveUser(userRequestDTO);
+        return ResponseEntity.status(HttpStatus.CREATED).body(responseDTO);
     }
 
     /**
@@ -50,8 +53,8 @@ public class UserController {
      * @return Une réponse HTTP contenant les informations de l'utilisateur si trouvé, sinon un statut 404.
      */
     @GetMapping("/{id}")
-    public ResponseEntity<User> getUser(@PathVariable Long id) {
-        Optional<User> user = userService.getUserById(id);
-        return user.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
+    public ResponseEntity<UserResponseDTO> getUser(@PathVariable Long id) {
+        Optional<UserResponseDTO> responseDTO = userService.getUserById(id);
+        return responseDTO.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 }

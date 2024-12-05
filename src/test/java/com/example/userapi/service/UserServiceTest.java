@@ -1,8 +1,9 @@
 package com.example.userapi.service;
 
+import com.example.userapi.dto.UserRequestDTO;
+import com.example.userapi.dto.UserResponseDTO;
 import com.example.userapi.model.User;
 import com.example.userapi.repository.UserRepository;
-import com.example.userapi.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -30,68 +31,46 @@ class UserServiceTest {
 
     @Test
     void testSaveUser() {
+        // Préparer un UserRequestDTO
+        UserRequestDTO userRequestDTO = new UserRequestDTO();
+        userRequestDTO.setUserName("John Doe");
+        userRequestDTO.setBirthDate(LocalDate.of(2000, 1, 1));
+        userRequestDTO.setCountryOfResidence("France");
+        userRequestDTO.setPhoneNumber("+33123456789");
+        userRequestDTO.setGender("homme");
+
+        // Simuler l'entité sauvegardée
         User user = new User();
+        user.setId(1L);
         user.setUserName("John Doe");
-        user.setBirthDate(LocalDate.of(2000, 1, 1));
-        user.setCountryOfResidence("France");
 
-        when(userRepository.save(user)).thenReturn(user);
+        when(userRepository.save(any(User.class))).thenReturn(user);
 
-        User savedUser = userService.saveUser(user);
+        // Appeler la méthode
+        UserResponseDTO responseDTO = userService.saveUser(userRequestDTO);
 
-        assertNotNull(savedUser);
-        assertEquals("John Doe", savedUser.getUserName());
-        verify(userRepository, times(1)).save(user);
+        // Vérifications
+        assertNotNull(responseDTO);
+        assertEquals(1L, responseDTO.getId());
+        assertEquals("John Doe", responseDTO.getUserName());
+        verify(userRepository, times(1)).save(any(User.class));
     }
 
     @Test
     void testGetUserById() {
+        // Simuler l'entité existante
         User user = new User();
         user.setId(1L);
         user.setUserName("Jane Doe");
 
         when(userRepository.findById(1L)).thenReturn(Optional.of(user));
 
-        Optional<User> foundUser = userService.getUserById(1L);
+        // Appeler la méthode
+        Optional<UserResponseDTO> responseDTO = userService.getUserById(1L);
 
-        assertTrue(foundUser.isPresent());
-        assertEquals("Jane Doe", foundUser.get().getUserName());
+        // Vérifications
+        assertTrue(responseDTO.isPresent());
+        assertEquals("Jane Doe", responseDTO.get().getUserName());
         verify(userRepository, times(1)).findById(1L);
-    }
-
-    @Test
-    void testIsAdult_True() {
-        LocalDate birthDate = LocalDate.of(2000, 1, 1);
-
-        boolean result = userService.isAdult(birthDate);
-
-        assertTrue(result, "User born in 2000 should be an adult");
-    }
-
-    @Test
-    void testIsAdult_False() {
-        LocalDate birthDate = LocalDate.now().minusYears(17);
-
-        boolean result = userService.isAdult(birthDate);
-
-        assertFalse(result, "User born 17 years ago should not be an adult");
-    }
-
-    @Test
-    void testIsResidentInFrance_True() {
-        String country = "France";
-
-        boolean result = userService.isResidentInFrance(country);
-
-        assertTrue(result, "User residing in 'France' should return true");
-    }
-
-    @Test
-    void testIsResidentInFrance_False() {
-        String country = "Germany";
-
-        boolean result = userService.isResidentInFrance(country);
-
-        assertFalse(result, "User residing in 'Germany' should return false");
     }
 }

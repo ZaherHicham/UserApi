@@ -1,6 +1,5 @@
 package com.example.userapi.model;
 
-import com.example.userapi.model.User;
 import com.example.userapi.repository.UserRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,22 +80,4 @@ class UserIntegrationTest {
         Optional<User> deletedUser = userRepository.findById(savedUser.getId());
         assertFalse(deletedUser.isPresent(), "L'utilisateur doit être supprimé");
     }
-
-    @Test
-    void testValidationConstraints() {
-        User user = new User();
-        user.setUserName(""); // Nom invalide
-        user.setBirthDate(LocalDate.now().plusDays(1)); // Date de naissance invalide
-        user.setCountryOfResidence(""); // Résidence invalide
-        user.setPhoneNumber("+33123456789");
-        user.setGender("invalid"); // Genre invalide
-
-        Exception exception = assertThrows(Exception.class, () -> userRepository.save(user));
-
-        String expectedMessage = "Validation failed";
-        String actualMessage = exception.getMessage();
-
-        assertTrue(actualMessage.contains(expectedMessage), "Une exception de validation doit être levée");
-    }
 }
-

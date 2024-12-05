@@ -56,6 +56,7 @@ public class User {
      * Genre de l'utilisateur.
      * Doit être l'une des valeurs suivantes : homme, femme, autre.
      */
+    @NotBlank(message = "Le genre est obligatoire")
     @Pattern(regexp = "^(homme|femme|autre)$", message = "Le genre doit être homme, femme ou autre")
     private String gender;
 

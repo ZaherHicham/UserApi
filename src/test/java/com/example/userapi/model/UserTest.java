@@ -1,13 +1,11 @@
 package com.example.userapi.model;
 
-import com.example.userapi.model.User;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validation;
 import jakarta.validation.Validator;
 import jakarta.validation.ValidatorFactory;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.util.Set;
@@ -42,7 +40,7 @@ class UserTest {
     @Test
     void testUserNameIsBlank() {
         User user = new User();
-        user.setUserName(""); // Invalide
+        user.setUserName("");
         user.setBirthDate(LocalDate.of(2000, 1, 1));
         user.setCountryOfResidence("France");
         user.setPhoneNumber("+33123456789");
@@ -51,8 +49,7 @@ class UserTest {
         Set<ConstraintViolation<User>> violations = validator.validate(user);
 
         assertEquals(1, violations.size());
-        ConstraintViolation<User> violation = violations.iterator().next();
-        assertEquals("Le nom d'utilisateur est obligatoire", violation.getMessage());
+        assertEquals("Le nom d'utilisateur est obligatoire", violations.iterator().next().getMessage());
     }
 
     @Test
@@ -67,8 +64,7 @@ class UserTest {
         Set<ConstraintViolation<User>> violations = validator.validate(user);
 
         assertEquals(1, violations.size());
-        ConstraintViolation<User> violation = violations.iterator().next();
-        assertEquals("La date de naissance doit être antérieure", violation.getMessage());
+        assertEquals("La date de naissance doit être antérieure", violations.iterator().next().getMessage());
     }
 
     @Test
@@ -83,8 +79,7 @@ class UserTest {
         Set<ConstraintViolation<User>> violations = validator.validate(user);
 
         assertEquals(1, violations.size());
-        ConstraintViolation<User> violation = violations.iterator().next();
-        assertEquals("Le pays de résidence est obligatoire", violation.getMessage());
+        assertEquals("Le pays de résidence est obligatoire", violations.iterator().next().getMessage());
     }
 
     @Test
@@ -99,7 +94,6 @@ class UserTest {
         Set<ConstraintViolation<User>> violations = validator.validate(user);
 
         assertEquals(1, violations.size());
-        ConstraintViolation<User> violation = violations.iterator().next();
-        assertEquals("Le genre doit être homme, femme ou autre", violation.getMessage());
+        assertEquals("Le genre doit être homme, femme ou autre", violations.iterator().next().getMessage());
     }
 }

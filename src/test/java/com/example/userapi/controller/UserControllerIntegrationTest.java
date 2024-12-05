@@ -30,6 +30,7 @@ class UserControllerIntegrationTest {
 
     @Test
     void testRegisterUser_Success() throws Exception {
+        // Préparer une requête valide
         User user = new User();
         user.setUserName("John Doe");
         user.setBirthDate(LocalDate.of(1990, 1, 1));
@@ -47,6 +48,7 @@ class UserControllerIntegrationTest {
 
     @Test
     void testRegisterUser_Failure_NotAdult() throws Exception {
+        // Préparer une requête invalide (utilisateur mineur)
         User user = new User();
         user.setUserName("Jane Doe");
         user.setBirthDate(LocalDate.now().minusYears(17)); // Moins de 18 ans
@@ -63,6 +65,7 @@ class UserControllerIntegrationTest {
 
     @Test
     void testRegisterUser_Failure_NotResidentInFrance() throws Exception {
+        // Préparer une requête invalide (utilisateur hors de France)
         User user = new User();
         user.setUserName("Mark Twain");
         user.setBirthDate(LocalDate.of(1980, 3, 25));
@@ -89,6 +92,7 @@ class UserControllerIntegrationTest {
 
         user = userRepository.save(user);
 
+        // Récupérer l'utilisateur avec MockMvc
         mockMvc.perform(get("/api/users/" + user.getId()))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.userName").value("Jane Smith"))
@@ -97,6 +101,7 @@ class UserControllerIntegrationTest {
 
     @Test
     void testGetUser_NotFound() throws Exception {
+        // Récupérer un utilisateur inexistant
         mockMvc.perform(get("/api/users/99999")) // ID inexistant
                 .andExpect(status().isNotFound());
     }

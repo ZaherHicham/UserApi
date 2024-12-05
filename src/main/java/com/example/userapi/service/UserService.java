@@ -1,5 +1,7 @@
 package com.example.userapi.service;
 
+import com.example.userapi.dto.UserRequestDTO;
+import com.example.userapi.dto.UserResponseDTO;
 import com.example.userapi.model.User;
 import com.example.userapi.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,23 +21,45 @@ public class UserService {
     private UserRepository userRepository;
 
     /**
-     * Enregistre un utilisateur dans la base de données.
+     * Enregistre un nouvel utilisateur dans le système.
      *
-     * @param user L'utilisateur à enregistrer.
-     * @return L'utilisateur enregistré avec un identifiant généré.
+     * @param userRequestDTO Les informations de l'utilisateur à enregistrer.
+     * @return Les informations de l'utilisateur enregistré.
      */
-    public User saveUser(User user) {
-        return userRepository.save(user);
+    public UserResponseDTO saveUser(UserRequestDTO userRequestDTO) {
+        User user = new User();
+        user.setUserName(userRequestDTO.getUserName());
+        user.setBirthDate(userRequestDTO.getBirthDate());
+        user.setCountryOfResidence(userRequestDTO.getCountryOfResidence());
+        user.setPhoneNumber(userRequestDTO.getPhoneNumber());
+        user.setGender(userRequestDTO.getGender());
+
+        User savedUser = userRepository.save(user);
+
+        UserResponseDTO responseDTO = new UserResponseDTO();
+        responseDTO.setId(savedUser.getId());
+        responseDTO.setUserName(savedUser.getUserName());
+        responseDTO.setCountryOfResidence(savedUser.getCountryOfResidence());
+
+        return responseDTO;
     }
+
 
     /**
      * Récupère un utilisateur par son identifiant.
      *
-     * @param id Identifiant unique de l'utilisateur.
-     * @return Un objet Optional contenant l'utilisateur s'il est trouvé, ou vide sinon.
+     * @param id L'identifiant unique de l'utilisateur.
+     * @return L'utilisateur trouvé, ou une valeur vide s'il n'existe pas.
      */
-    public Optional<User> getUserById(Long id) {
-        return userRepository.findById(id);
+    public Optional<UserResponseDTO> getUserById(Long id) {
+        return userRepository.findById(id).map(user -> {
+            // Mapper l'entité vers un DTO de réponse
+            UserResponseDTO responseDTO = new UserResponseDTO();
+            responseDTO.setId(user.getId());
+            responseDTO.setUserName(user.getUserName());
+            responseDTO.setCountryOfResidence(user.getCountryOfResidence());
+            return responseDTO;
+        });
     }
 
     /**

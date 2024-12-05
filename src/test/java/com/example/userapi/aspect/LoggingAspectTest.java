@@ -6,8 +6,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -35,12 +33,12 @@ class LoggingAspectTest {
         when(methodSignature.toString()).thenReturn("com.example.userapi.service.UserService.someMethod");
         when(joinPoint.getArgs()).thenReturn(new Object[]{"TestArg1", 123});
 
-        // Mock proceeding method
+        // Mock la méthode exécutée
         when(joinPoint.proceed()).thenReturn("TestResult");
 
         Object result = loggingAspect.logServiceCalls(joinPoint);
 
-        assertEquals("TestResult", result);
+        assertEquals("TestResult", result, "La méthode doit retourner le résultat attendu");
         verify(joinPoint, times(1)).proceed();
     }
 
@@ -50,13 +48,11 @@ class LoggingAspectTest {
         when(methodSignature.toString()).thenReturn("com.example.userapi.service.UserService.someMethod");
         when(joinPoint.getArgs()).thenReturn(new Object[]{});
 
-        // Simulate exception during method execution
+        // Simuler une exception pendant l'exécution
         Throwable throwable = new RuntimeException("Test Exception");
         when(joinPoint.proceed()).thenThrow(throwable);
 
         RuntimeException exception = assertThrows(RuntimeException.class, () -> loggingAspect.logServiceCalls(joinPoint));
-        assertEquals("Test Exception", exception.getMessage());
+        assertEquals("Test Exception", exception.getMessage(), "Le message d'exception doit correspondre");
     }
 }
-
-
