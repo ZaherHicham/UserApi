@@ -23,7 +23,7 @@ class UserRepositoryTest {
         user.setUserName("John Doe");
         user.setBirthDate(LocalDate.of(2000, 1, 1));
         user.setCountryOfResidence("France");
-        user.setPhoneNumber("+33123456789");
+        user.setPhoneNumber("0123456789");
         user.setGender("homme");
 
         User savedUser = userRepository.save(user);
@@ -38,7 +38,7 @@ class UserRepositoryTest {
         user.setUserName("Jane Doe");
         user.setBirthDate(LocalDate.of(1990, 5, 15));
         user.setCountryOfResidence("France");
-        user.setPhoneNumber("+33765432189");
+        user.setPhoneNumber("0765432189");
         user.setGender("femme");
 
         User savedUser = userRepository.save(user);
@@ -54,7 +54,7 @@ class UserRepositoryTest {
         user.setUserName("Mark Twain");
         user.setBirthDate(LocalDate.of(1985, 3, 25));
         user.setCountryOfResidence("France");
-        user.setPhoneNumber("+33612345678");
+        user.setPhoneNumber("0612345678");
         user.setGender("homme");
 
         User savedUser = userRepository.save(user);

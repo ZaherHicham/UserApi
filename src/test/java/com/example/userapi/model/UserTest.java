@@ -29,7 +29,7 @@ class UserTest {
         user.setUserName("John Doe");
         user.setBirthDate(LocalDate.of(2000, 1, 1));
         user.setCountryOfResidence("France");
-        user.setPhoneNumber("+33123456789");
+        user.setPhoneNumber("0123456789");
         user.setGender("homme");
 
         Set<ConstraintViolation<User>> violations = validator.validate(user);
@@ -43,7 +43,7 @@ class UserTest {
         user.setUserName("");
         user.setBirthDate(LocalDate.of(2000, 1, 1));
         user.setCountryOfResidence("France");
-        user.setPhoneNumber("+33123456789");
+        user.setPhoneNumber("0123456789");
         user.setGender("homme");
 
         Set<ConstraintViolation<User>> violations = validator.validate(user);
@@ -58,7 +58,7 @@ class UserTest {
         user.setUserName("John Doe");
         user.setBirthDate(LocalDate.now().plusDays(1)); // Invalide
         user.setCountryOfResidence("France");
-        user.setPhoneNumber("+33123456789");
+        user.setPhoneNumber("0123456789");
         user.setGender("homme");
 
         Set<ConstraintViolation<User>> violations = validator.validate(user);
@@ -73,7 +73,7 @@ class UserTest {
         user.setUserName("John Doe");
         user.setBirthDate(LocalDate.of(2000, 1, 1));
         user.setCountryOfResidence(""); // Invalide
-        user.setPhoneNumber("+33123456789");
+        user.setPhoneNumber("0123456789");
         user.setGender("homme");
 
         Set<ConstraintViolation<User>> violations = validator.validate(user);
@@ -88,7 +88,7 @@ class UserTest {
         user.setUserName("John Doe");
         user.setBirthDate(LocalDate.of(2000, 1, 1));
         user.setCountryOfResidence("France");
-        user.setPhoneNumber("+33123456789");
+        user.setPhoneNumber("0123456789");
         user.setGender("invalid"); // Invalide
 
         Set<ConstraintViolation<User>> violations = validator.validate(user);

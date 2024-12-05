@@ -30,7 +30,7 @@ class UserServiceIntegrationTest {
         userRequestDTO.setUserName("John Doe");
         userRequestDTO.setBirthDate(LocalDate.of(1990, 1, 1));
         userRequestDTO.setCountryOfResidence("France");
-        userRequestDTO.setPhoneNumber("+33123456789");
+        userRequestDTO.setPhoneNumber("0123456789");
         userRequestDTO.setGender("homme");
 
         // Sauvegarder l'utilisateur
@@ -49,7 +49,7 @@ class UserServiceIntegrationTest {
         userRequestDTO.setUserName("Jane Doe");
         userRequestDTO.setBirthDate(LocalDate.of(1990, 5, 15));
         userRequestDTO.setCountryOfResidence("France");
-        userRequestDTO.setPhoneNumber("+33765432189");
+        userRequestDTO.setPhoneNumber("0765432189");
         userRequestDTO.setGender("femme");
 
         // Sauvegarder l'utilisateur
